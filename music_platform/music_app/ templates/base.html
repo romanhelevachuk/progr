@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Музична платформа</title>
+</head>
+<body>
+    <header>
+        <h1>Музична платформа</h1>
+        <nav>
+            <a href="{% url 'home' %}">Головна</a>
+            <a href="{% url 'register' %}">Реєстрація</a>
+            <a href="{% url 'login' %}">Вхід</a>
+            <!-- Додайте інші посилання тут -->
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Музична платформа</p>
+    </footer>
+</body>
+</html>
