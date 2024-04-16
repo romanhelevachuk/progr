@@ -1,0 +1,27 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+    <h1>{{ question.question_text }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choices.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Vote" style="margin-top: 30px">
+    </form>
+
+    <div style="display: inline-flex; margin-top: 20px; gap: 8px">
+        <a href="{% url 'polls:index' %}">Back to main page </a>
+        
+        <a href="{% url 'polls:update_question' question.id %}">Update Question</a>
+        <a href="{% url 'polls:delete_question' question.id %}">Delete Question</a>
+
+        <a href="{% url 'polls:results' question.id %}">View Results</a>
+    </div>
+
+{% endblock %}
